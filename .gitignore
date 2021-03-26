@@ -2,3 +2,5 @@
 __pycache__
 controllers/__pycache__
 models/__pycache__
+recipes_db.sqbpro
+recipes_db.db-journal

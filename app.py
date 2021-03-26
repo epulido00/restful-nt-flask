@@ -10,7 +10,7 @@ def getRecipes():
 	if request.method == 'GET':
 		return jsonify(RecipesModel().all()), 200
 	elif request.method == 'POST':
-		return "Aqui es la logica para hacer post"
+		return jsonify(RecipesModel().create(request.json))
 
 @app.route("/desserts", methods=['GET', 'POST'])
 def getDesserts():
@@ -21,5 +21,4 @@ def getDesserts():
 		return "Aqui es la logica para hacer post"
 
 if __name__ == '__main__':
-	recipes = RecipesController
 	app.run(port='5000')

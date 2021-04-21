@@ -10,7 +10,14 @@ def getRecipes():
 	if request.method == 'GET':
 		return jsonify(RecipesModel().all()), 200
 	elif request.method == 'POST':
-		return jsonify(RecipesModel().create(request.json))
+		return jsonify(RecipesModel().create(request.json)), 200
+
+@app.route("/recipes/<int:id_recipe>", methods=['DELETE'])
+def Recipes(id_recipe):
+	#Se modifican o borran los valores de recipes
+	if request.method == 'DELETE':
+		RecipesModel().delete(id_recipe)
+		return jsonify(), 200
 
 @app.route("/desserts", methods=['GET', 'POST'])
 def getDesserts():

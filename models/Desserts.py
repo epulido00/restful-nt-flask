@@ -1,5 +1,6 @@
 from restful.models.Model import Model as model
 from sqlalchemy import create_engine
+import json
 
 class DessertsModel(model):
 	def __init__(self):
@@ -11,7 +12,7 @@ class DessertsModel(model):
 
 	def create(self, data):
 		self.db.execute("INSERT INTO desserts(name, description, can_contain, extras) VALUES (?, ?, ?, ?)", (data['name'], data['description'], json.dumps(data['can_contain']), json.dumps(data['extras'])))
-		response = self.db.execute("SELECT * FROM desserts LIMIT 1 ORDER BY id_desserts DESC")
+		response = self.db.execute("SELECT * FROM desserts ORDER BY id_dessert DESC LIMIT 1")
 		return { "data": [dict(zip(tuple(response.keys()), i)) for i in response.cursor]}
 
 	def delete(self, id_dessert):

@@ -12,8 +12,8 @@ class RecipesModel(model):
 
 	def create(self, data):
 		self.db.execute("INSERT INTO recipes(name, description, ingredients, preparation) VALUES (?, ?, ?, ?)", (data['name'], data['description'], json.dumps(data['ingredients']), json.dumps(data['preparation'])))
-		response = self.db.execute("SELECT * FROM recipes LIMIT 1 ORDER BY id_recipe DESC")
-		return { "data": [dict(zip(tuple (response.keys()), i)) for i in response.cursor]}
+		response = self.db.execute("SELECT * FROM recipes ORDER BY id_recipe DESC LIMIT 1")
+		return { "data": [dict(zip(tuple(response.keys()), i)) for i in response.cursor]}
 
 	def delete(self, id_recipe):
 		self.db.execute("DELETE FROM recipes WHERE id_recipe = ?", id_recipe)

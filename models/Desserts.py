@@ -1,4 +1,4 @@
-from restful.models.Model import Model as model
+from .Model import Model as model
 from sqlalchemy import create_engine
 import json
 

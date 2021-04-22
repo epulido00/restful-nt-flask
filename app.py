@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
-from restful.models.Recipes import RecipesModel
-from restful.models.Desserts import DessertsModel
+from .models.Recipes import RecipesModel
+from .models.Desserts import DessertsModel
 
 app = Flask(__name__)
 

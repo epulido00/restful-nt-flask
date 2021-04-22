@@ -25,7 +25,14 @@ def getDesserts():
 	if request.method == 'GET':
 		return jsonify(DessertsModel().all()), 200
 	elif request.method == 'POST':
-		return "Aqui es la logica para hacer post"
+		return jsonify(DessertsModel().create(request.json)), 200
+
+@app.route("/desserts/<int:id_dessert>", methods=['DELETE'])
+def Desserts(id_dessert):
+	#Se modifican o borran los valores de recipes
+	if request.method == 'DELETE':
+		DessertsModel().delete(id_dessert)
+		return jsonify(), 200
 
 if __name__ == '__main__':
 	app.run(port='5000')
